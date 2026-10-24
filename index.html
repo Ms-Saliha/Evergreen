@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evergreen | Explore Beyond</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style>
+    ::selection {
+      background: #a7f3d0;
+      color: #064e3b;
+    }
+
+    .hero-overlay {
+      background: linear-gradient(90deg, rgba(2,24,20,.85), rgba(2,24,20,.2));
+    }
+
+    .reveal {
+      animation: appear .7s ease both;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dark .page {
+      background: #020617;
+      color: #f8fafc;
+    }
+
+    .dark .surface {
+      background: #111827;
+      color: #f8fafc;
+      border-color: #374151;
+    }
+
+    .dark .muted {
+      color: #cbd5e1;
+    }
+
+    .dark .field {
+      background: #0f172a;
+      color: #f8fafc;
+      border-color: #475569;
+    }
+
+    .dark .navbar {
+      background: rgba(2,6,23,.96);
+      border-color: #374151;
+    }
+
+    .filter-active {
+      background: #065f46 !important;
+      color: white !important;
+      border-color: #065f46 !important;
+    }
+
+    .favorite-active {
+      background: #dcfce7;
+      color: #047857;
+    }
+  </style>
+</head>
+
+<body class="page bg-stone-50 text-slate-800 antialiased">
+
+  <div id="progress" class="fixed left-0 top-0 z-[100] h-1 w-0 bg-lime-400"></div>
+
+  <!-- ANNOUNCEMENT -->
+  <div class="bg-emerald-950 px-4 py-3 text-center text-xs font-bold tracking-widest text-white sm:text-sm">
+    A LITTLE MORE WONDER ✦ A LITTLE LESS HURRY
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="navbar sticky top-0 z-50 border-b border-white/70 bg-white/90 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+
+      <a href="#home" class="flex items-center gap-3">
+        <span class="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-800 text-2xl text-white">✦</span>
+        <span>
+          <span class="block text-xl font-black text-emerald-950">
+            evergreen<span class="text-emerald-600">.</span>
+          </span>
+          <span class="block text-[10px] font-bold uppercase tracking-widest text-slate-500">
+            Travel beautifully
+          </span>
+        </span>
+      </a>
+
+      <div class="hidden items-center gap-7 lg:flex">
+        <a href="#home" class="font-bold hover:text-emerald-700">Home</a>
+        <a href="#destinations" class="font-semibold hover:text-emerald-700">Destinations</a>
+        <a href="#story" class="font-semibold hover:text-emerald-700">Our Story</a>
+        <a href="#faq" class="font-semibold hover:text-emerald-700">FAQs</a>
+      </div>
+
+      <div class="hidden items-center gap-3 sm:flex">
+        <button id="themeBtn" class="rounded-full border px-4 py-3 hover:bg-slate-100" aria-label="Toggle dark mode">☾</button>
+        <button data-book class="rounded-full bg-emerald-800 px-5 py-3 font-bold text-white transition hover:bg-emerald-700">
+          Plan a Trip ↗
+        </button>
+      </div>
+
+      <button id="menuBtn" class="rounded-xl border px-4 py-2 text-2xl lg:hidden" aria-expanded="false" aria-label="Open menu">☰</button>
+    </nav>
+
+    <div id="mobileMenu" class="hidden border-t bg-white p-5 lg:hidden">
+      <a href="#home" class="block rounded-lg p-3 hover:bg-emerald-50">Home</a>
+      <a href="#destinations" class="block rounded-lg p-3 hover:bg-emerald-50">Destinations</a>
+      <a href="#story" class="block rounded-lg p-3 hover:bg-emerald-50">Our Story</a>
+      <a href="#faq" class="block rounded-lg p-3 hover:bg-emerald-50">FAQs</a>
+      <button data-book class="mt-3 w-full rounded-xl bg-emerald-800 p-3 font-bold text-white">Plan a Trip</button>
+      <button id="mobileThemeBtn" class="mt-3 w-full rounded-xl border p-3">Toggle Theme ☾</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="home" class="relative isolate overflow-hidden bg-emerald-950">
+      <img src="mountain.jpg" alt="Mountain landscape" class="absolute inset-0 -z-20 h-full w-full object-cover">
+      <div class="hero-overlay absolute inset-0 -z-10"></div>
+
+      <div class="mx-auto grid min-h-[600px] max-w-7xl items-center px-5 py-20 sm:px-8 lg:grid-cols-2">
+        <div class="reveal max-w-3xl text-white">
+          <span class="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-widest">
+            ✦ Your next chapter starts here
+          </span>
+
+          <h1 class="mt-8 text-5xl font-black leading-tight sm:text-7xl lg:text-8xl">
+            Find your<br>kind of <span class="font-serif italic text-lime-300">wild.</span>
+          </h1>
+
+          <p class="mt-6 max-w-xl text-lg leading-8 text-white/85">
+            Discover beautiful mountains, peaceful valleys and unforgettable places.
+            Take a breath, slow down and explore.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="#destinations" class="rounded-full bg-lime-300 px-7 py-4 font-extrabold text-emerald-950 transition hover:bg-lime-200">
+              Explore Destinations →
+            </a>
+            <button id="shareBtn" class="rounded-full border border-white/50 bg-white/10 px-7 py-4 font-bold text-white hover:bg-white/20">
+              Share Page ↗
+            </button>
+          </div>
+
+          <p id="shareMessage" class="mt-4 text-sm text-lime-200" aria-live="polite"></p>
+          <div class="mt-8 flex flex-wrap gap-5 text-sm text-white/80">
+            <span>✦ Nature-first inspiration</span>
+            <span>✦ Beautiful memories</span>
+          </div>
+        </div>
+
+        <div class="mt-12 hidden justify-end lg:flex">
+          <div class="max-w-xs rounded-3xl border border-white/30 bg-white/15 p-7 text-white shadow-2xl backdrop-blur-xl">
+            <span class="text-xs font-bold uppercase tracking-widest text-lime-200">Your next adventure</span>
+            <p class="mt-6 font-serif text-4xl italic leading-tight">A little more wonder. A little less hurry.</p>
+            <div class="mt-7 border-t border-white/30 pt-5 text-sm">Discover your happy place ↗</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGHLIGHTS -->
+    <section class="mx-auto -mt-5 max-w-7xl px-5 sm:px-8">
+      <div class="surface grid grid-cols-2 overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-xl md:grid-cols-4">
+        <div class="border-b border-r p-6 md:border-b-0"><p class="text-3xl font-black text-emerald-800">01.</p><p class="muted mt-2 text-sm">Breathtaking views</p></div>
+        <div class="border-b p-6 md:border-b-0 md:border-r"><p class="text-3xl font-black text-emerald-800">02.</p><p class="muted mt-2 text-sm">Fresh perspectives</p></div>
+        <div class="border-r p-6"><p class="text-3xl font-black text-emerald-800">03.</p><p class="muted mt-2 text-sm">Peaceful moments</p></div>
+        <div class="p-6"><p class="text-3xl font-black text-emerald-800">04.</p><p class="muted mt-2 text-sm">Lasting memories</p></div>
+      </div>
+    </section>
+
+    <!-- DESTINATIONS -->
+    <section id="destinations" class="page mx-auto max-w-7xl px-5 py-24 sm:px-8">
+
+      <div class="reveal mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div>
+          <p class="text-xs font-extrabold uppercase tracking-[.25em] text-emerald-700">Choose your escape</p>
+          <h2 class="mt-3 text-4xl font-black tracking-tight sm:text-5xl">Places that stay<br>with you<span class="text-emerald-600">.</span></h2>
+        </div>
+        <p class="muted max-w-md leading-7">Search destinations, filter categories, save favorites and plan your next adventure.</p>
+      </div>
+
+      <!-- SEARCH AND FILTERS -->
+      <div class="surface mb-6 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 md:flex-row md:items-center">
+        <input id="searchInput" type="search" placeholder="Search destinations..." aria-label="Search destinations"
+          class="field min-w-0 flex-1 rounded-xl border border-slate-200 bg-stone-50 px-4 py-3 outline-none focus:border-emerald-600">
+
+        <div class="flex flex-wrap gap-2">
+          <button data-filter="all" class="filterBtn filter-active rounded-full border px-4 py-3 text-sm font-bold">All</button>
+          <button data-filter="mountains" class="filterBtn rounded-full border border-slate-200 px-4 py-3 text-sm font-bold">Mountains</button>
+          <button data-filter="nature" class="filterBtn rounded-full border border-slate-200 px-4 py-3 text-sm font-bold">Nature</button>
+        </div>
+
+        <select id="sortSelect" aria-label="Sort destinations" class="field rounded-xl border border-slate-200 bg-white px-3 py-3">
+          <option value="featured">Featured</option>
+          <option value="az">Name A–Z</option>
+          <option value="za">Name Z–A</option>
+        </select>
+
+        <button id="viewBtn" class="rounded-xl border border-slate-200 px-4 py-3 font-bold">☷ List View</button>
+      </div>
+
+      <p id="resultSummary" class="muted mb-5 text-sm" aria-live="polite">Showing all destinations</p>
+
+      <!-- NINE DESTINATION CARDS -->
+      <div id="destinationGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+        <!-- MOUNTAIN 1 -->
+        <article data-name="Mountain 1" data-category="mountains" class="destination-card surface overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+          <div class="relative overflow-hidden">
+            <img src="mountain.jpg" alt="Snowy mountain peaks" loading="lazy" class="h-64 w-full object-cover transition duration-500 hover:scale-110">
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xs font-bold text-emerald-900">MOUNTAINS</span>
+            <button class="favorite absolute right-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xl" aria-label="Favorite Mountain 1" aria-pressed="false">♡</button>
+          </div>
+          <div class="p-6"><h3 class="text-xl font-extrabold">Alpine Dreams</h3><p class="muted mt-2 text-sm">Snowy peaks and open skies</p><p class="muted mt-4 text-sm leading-6">Discover towering mountains and fresh air.</p><button data-card-plan="Alpine Dreams" class="mt-5 w-full rounded-xl border border-emerald-800 px-4 py-3 font-bold text-emerald-800 hover:bg-emerald-800 hover:text-white">Plan This Trip ↗</button></div>
+        </article>
+
+        <!-- MOUNTAIN 2 -->
+        <article data-name="Mountain 2" data-category="mountains" class="destination-card surface overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+          <div class="relative overflow-hidden">
+            <img src="mountain2.jpg" alt="Mountain landscape" loading="lazy" class="h-64 w-full object-cover transition duration-500 hover:scale-110">
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xs font-bold text-emerald-900">MOUNTAINS</span>
+            <button class="favorite absolute right-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xl" aria-label="Favorite Mountain 2" aria-pressed="false">♡</button>
+          </div>
+          <div class="p-6"><h3 class="text-xl font-extrabold">Mountain Majesty</h3><p class="muted mt-2 text-sm">Adventure above the clouds</p><p class="muted mt-4 text-sm leading-6">Explore magnificent mountain scenery.</p><button data-card-plan="Mountain Majesty" class="mt-5 w-full rounded-xl border border-emerald-800 px-4 py-3 font-bold text-emerald-800 hover:bg-emerald-800 hover:text-white">Plan This Trip ↗</button></div>
+        </article>
+
+        <!-- MOUNTAIN 3 -->
+        <article data-name="Mountain 3" data-category="mountains" class="destination-card surface overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+          <div class="relative overflow-hidden">
+            <img src="mountain3.jpg" alt="Green and snowy mountains" loading="lazy" class="h-64 w-full object-cover transition duration-500 hover:scale-110">
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xs font-bold text-emerald-900">MOUNTAINS</span>
+            <button class="favorite absolute right-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xl" aria-label="Favorite Mountain 3" aria-pressed="false">♡</button>
+          </div>
+          <div class="p-6"><h3 class="text-xl font-extrabold">Mountain Serenity</h3><p class="muted mt-2 text-sm">Fresh air and quiet trails</p><p class="muted mt-4 text-sm leading-6">Find your peaceful place in the hills.</p><button data-card-plan="Mountain Serenity" class="mt-5 w-full rounded-xl border border-emerald-800 px-4 py-3 font-bold text-emerald-800 hover:bg-emerald-800 hover:text-white">Plan This Trip ↗</button></div>
+        </article>
+
+        <!-- VALLEY 1 -->
+        <article data-name="Valley 1" data-category="nature" class="destination-card surface overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+          <div class="relative overflow-hidden">
+            <img src="valley.jpg" alt="Green mountain valley" loading="lazy" class="h-64 w-full object-cover transition duration-500 hover:scale-110">
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xs font-bold text-emerald-900">NATURE</span>
+            <button class="favorite absolute right-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xl" aria-label="Favorite Valley 1" aria-pressed="false">♡</button>
+          </div>
+          <div class="p-6"><h3 class="text-xl font-extrabold">Green Horizons</h3><p class="muted mt-2 text-sm">Quiet valleys and forest trails</p><p class="muted mt-4 text-sm leading-6">Take a peaceful break in nature.</p><button data-card-plan="Green Horizons" class="mt-5 w-full rounded-xl border border-emerald-800 px-4 py-3 font-bold text-emerald-800 hover:bg-emerald-800 hover:text-white">Plan This Trip ↗</button></div>
+        </article>
+
+        <!-- VALLEY 2 -->
+        <article data-name="Valley 2" data-category="nature" class="destination-card surface overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+          <div class="relative overflow-hidden">
+            <img src="valley2.jpg" alt="Beautiful green valley" loading="lazy" class="h-64 w-full object-cover transition duration-500 hover:scale-110">
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xs font-bold text-emerald-900">NATURE</span>
+            <button class="favorite absolute right-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xl" aria-label="Favorite Valley 2" aria-pressed="false">♡</button>
+          </div>
+          <div class="p-6"><h3 class="text-xl font-extrabold">Emerald Valley</h3><p class="muted mt-2 text-sm">Rolling green hills</p><p class="muted mt-4 text-sm leading-6">Enjoy the views and peaceful surroundings.</p><button data-card-plan="Emerald Valley" class="mt-5 w-full rounded-xl border border-emerald-800 px-4 py-3 font-bold text-emerald-800 hover:bg-emerald-800 hover:text-white">Plan This Trip ↗</button></div>
+        </article>
+
+        <!-- VALLEY 3 -->
+        <article data-name="Valley 3" data-category="nature" class="destination-card surface overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+          <div class="relative overflow-hidden">
+            <img src="valley3.jpg" alt="Peaceful valley and hills" loading="lazy" class="h-64 w-full object-cover transition duration-500 hover:scale-110">
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xs font-bold text-emerald-900">NATURE</span>
+            <button class="favorite absolute right-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xl" aria-label="Favorite Valley 3" aria-pressed="false">♡</button>
+          </div>
+          <div class="p-6"><h3 class="text-xl font-extrabold">Hidden Valley</h3><p class="muted mt-2 text-sm">A peaceful natural escape</p><p class="muted mt-4 text-sm leading-6">Discover the quiet beauty of green valleys.</p><button data-card-plan="Hidden Valley" class="mt-5 w-full rounded-xl border border-emerald-800 px-4 py-3 font-bold text-emerald-800 hover:bg-emerald-800 hover:text-white">Plan This Trip ↗</button></div>
+        </article>
+
+        <!-- LAKE 1 -->
+        <article data-name="Lake 1" data-category="nature" class="destination-card surface overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+          <div class="relative overflow-hidden">
+            <img src="lake.jpg" alt="Blue mountain lake" loading="lazy" class="h-64 w-full object-cover transition duration-500 hover:scale-110">
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xs font-bold text-emerald-900">LAKES</span>
+            <button class="favorite absolute right-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xl" aria-label="Favorite Lake 1" aria-pressed="false">♡</button>
+          </div>
+          <div class="p-6"><h3 class="text-xl font-extrabold">Blue Lake Escape</h3><p class="muted mt-2 text-sm">Crystal-clear water and mountains</p><p class="muted mt-4 text-sm leading-6">Find calm moments beside the water.</p><button data-card-plan="Blue Lake Escape" class="mt-5 w-full rounded-xl border border-emerald-800 px-4 py-3 font-bold text-emerald-800 hover:bg-emerald-800 hover:text-white">Plan This Trip ↗</button></div>
+        </article>
+
+        <!-- LAKE 2 -->
+        <article data-name="Lake 2" data-category="nature" class="destination-card surface overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+          <div class="relative overflow-hidden">
+            <img src="lake2.jpg" alt="Turquoise lake" loading="lazy" class="h-64 w-full object-cover transition duration-500 hover:scale-110">
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xs font-bold text-emerald-900">LAKES</span>
+            <button class="favorite absolute right-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xl" aria-label="Favorite Lake 2" aria-pressed="false">♡</button>
+          </div>
+          <div class="p-6"><h3 class="text-xl font-extrabold">Turquoise Waters</h3><p class="muted mt-2 text-sm">Beautiful water and fresh air</p><p class="muted mt-4 text-sm leading-6">Enjoy a refreshing lakeside view.</p><button data-card-plan="Turquoise Waters" class="mt-5 w-full rounded-xl border border-emerald-800 px-4 py-3 font-bold text-emerald-800 hover:bg-emerald-800 hover:text-white">Plan This Trip ↗</button></div>
+        </article>
+
+        <!-- LAKE 3 -->
+        <article data-name="Lake 3" data-category="nature" class="destination-card surface overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-2 hover:shadow-xl">
+          <div class="relative overflow-hidden">
+            <img src="lake3.jpg" alt="Lake surrounded by mountains" loading="lazy" class="h-64 w-full object-cover transition duration-500 hover:scale-110">
+            <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xs font-bold text-emerald-900">LAKES</span>
+            <button class="favorite absolute right-4 top-4 rounded-full bg-white/90 px-3 py-2 text-xl" aria-label="Favorite Lake 3" aria-pressed="false">♡</button>
+          </div>
+          <div class="p-6"><h3 class="text-xl font-extrabold">Lake Serenity</h3><p class="muted mt-2 text-sm">Calm waters and scenic views</p><p class="muted mt-4 text-sm leading-6">Make memories in a peaceful setting.</p><button data-card-plan="Lake Serenity" class="mt-5 w-full rounded-xl border border-emerald-800 px-4 py-3 font-bold text-emerald-800 hover:bg-emerald-800 hover:text-white">Plan This Trip ↗</button></div>
+        </article>
+
+      </div>
+
+      <div id="emptyState" class="surface hidden rounded-2xl border border-dashed p-10 text-center">
+        <h3 class="text-xl font-extrabold">No destinations found</h3>
+        <p class="muted mt-2">Try another search or reset the filters.</p>
+        <button id="resetBtn" class="mt-5 rounded-full bg-emerald-800 px-6 py-3 font-bold text-white">Reset Filters</button>
+      </div>
+
+      <p id="favoriteMessage" class="mt-5 text-sm font-semibold text-emerald-700" aria-live="polite"></p>
+    </section>
+
+    <!-- OUR STORY -->
+    <section id="story" class="bg-emerald-950 text-white">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:py-28">
+        <div class="reveal">
+          <img src="valley.jpg" alt="Peaceful green valley" loading="lazy" class="h-[350px] w-full rounded-3xl object-cover shadow-2xl sm:h-[450px]">
+        </div>
+        <div class="reveal">
+          <p class="text-xs font-extrabold uppercase tracking-[.25em] text-lime-300">A different way to explore</p>
+          <h2 class="mt-4 text-4xl font-black leading-tight sm:text-5xl">Leave room for <span class="font-serif italic text-lime-200">wonder.</span></h2>
+          <p class="mt-6 leading-8 text-emerald-50/80">Travel is not just about reaching a place. It is about noticing the light on a mountain, the quiet of a forest and the joy of discovering something new.</p>
+
+          <div class="mt-8 space-y-5">
+            <div class="flex gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 text-lime-300">✓</span>
+              <div><h3 class="font-bold">Slow down and reconnect</h3><p class="mt-1 text-sm text-white/70">Make time for moments you usually rush past.</p></div>
+            </div>
+            <div class="flex gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/10 text-lime-300">✦</span>
+              <div><h3 class="font-bold">Follow your curiosity</h3><p class="mt-1 text-sm text-white/70">Discover fresh ideas and different perspectives.</p></div>
+            </div>
+          </div>
+
+          <button data-book class="mt-8 rounded-full bg-lime-300 px-6 py-4 font-extrabold text-emerald-950 hover:bg-lime-200">Build Your Trip →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="page mx-auto max-w-4xl px-5 py-24 sm:px-8">
+      <div class="reveal text-center">
+        <p class="text-xs font-extrabold uppercase tracking-[.25em] text-emerald-700">Good to know</p>
+        <h2 class="mt-3 text-3xl font-black sm:text-4xl">Frequently Asked Questions</h2>
+        <p class="muted mt-3">Click a question to see the answer.</p>
+      </div>
+
+      <div class="mt-10 space-y-4">
+        <div class="surface rounded-2xl border border-slate-200 bg-white p-5">
+          <button class="faqBtn flex w-full items-center justify-between gap-3 text-left font-extrabold" aria-expanded="false">Can I book a real trip here?<span class="faqIcon">+</span></button>
+          <p class="faqAnswer muted hidden pt-4 leading-7">No. This is a front-end demo. The trip planner creates a summary but does not make a real reservation.</p>
+        </div>
+        <div class="surface rounded-2xl border border-slate-200 bg-white p-5">
+          <button class="faqBtn flex w-full items-center justify-between gap-3 text-left font-extrabold" aria-expanded="false">Are favorites saved?<span class="faqIcon">+</span></button>
+          <p class="faqAnswer muted hidden pt-4 leading-7">Yes. Favorites are saved in localStorage in this browser.</p>
+        </div>
+        <div class="surface rounded-2xl border border-slate-200 bg-white p-5">
+          <button class="faqBtn flex w-full items-center justify-between gap-3 text-left font-extrabold" aria-expanded="false">Can I use my own pictures?<span class="faqIcon">+</span></button>
+          <p class="faqAnswer muted hidden pt-4 leading-7">Yes. Put your pictures beside index.html and update the image filenames in the relevant cards.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="px-5 pb-24 sm:px-8">
+      <div class="reveal mx-auto max-w-5xl rounded-[2rem] bg-gradient-to-br from-lime-200 via-emerald-100 to-sky-100 px-6 py-12 text-center sm:px-12 sm:py-16">
+        <p class="text-3xl">✉</p>
+        <p class="mt-4 text-xs font-extrabold uppercase tracking-[.25em] text-emerald-800">A little inspiration</p>
+        <h2 class="mt-3 text-3xl font-black text-emerald-950 sm:text-5xl">Let wonder find you.</h2>
+        <p class="mx-auto mt-4 max-w-lg leading-7 text-emerald-950/70">Enter your email to test this demo newsletter form.</p>
+
+        <form id="newsletterForm" class="mx-auto mt-7 flex max-w-xl flex-col gap-3 sm:flex-row">
+          <input id="emailInput" type="email" required placeholder="Your email address" aria-label="Your email address" class="field min-w-0 flex-1 rounded-full border border-white bg-white px-6 py-4 outline-none">
+          <button type="submit" class="rounded-full bg-emerald-900 px-7 py-4 font-extrabold text-white hover:bg-emerald-800">Count Me In ↗</button>
+        </form>
+        <p id="formMessage" class="mt-4 text-sm font-bold text-emerald-900" aria-live="polite"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 text-slate-300">
+    <div class="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-3">
+      <div>
+        <a href="#home" class="text-2xl font-black text-white">evergreen<span class="text-lime-300">.</span></a>
+        <p class="mt-4 max-w-xs text-sm leading-6 text-slate-400">Inspiration for people who love exploring the world.</p>
+      </div>
+      <div>
+        <h3 class="font-extrabold text-white">Explore</h3>
+        <div class="mt-4 flex flex-col items-start gap-3 text-sm">
+          <a href="#home" class="hover:text-lime-300">Home</a>
+          <a href="#destinations" class="hover:text-lime-300">Destinations</a>
+          <a href="#story" class="hover:text-lime-300">Our Story</a>
+          <a href="#faq" class="hover:text-lime-300">FAQs</a>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-extrabold text-white">Stay Curious</h3>
+        <p class="mt-4 text-sm leading-6 text-slate-400">Take only memories and make every journey meaningful.</p>
+        <button id="footerTop" class="mt-4 rounded-full border border-slate-700 px-4 py-2 text-sm font-bold hover:border-lime-300 hover:text-lime-300">Back to Top ↑</button>
+      </div>
+    </div>
+    <div class="border-t border-white/10 px-5 py-5 text-center text-xs text-slate-500">© 2026 Evergreen. Built for curious minds.</div>
+  </footer>
+
+  <!-- TRIP PLANNER MODAL -->
+  <div id="bookingModal" class="fixed inset-0 z-[80] hidden items-center justify-center bg-slate-950/70 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="surface max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl sm:p-8">
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <p class="text-xs font-extrabold uppercase tracking-widest text-emerald-700">Your next adventure</p>
+          <h2 id="modalTitle" class="mt-2 text-2xl font-black">Plan Your Trip</h2>
+        </div>
+        <button id="closeModal" class="rounded-full bg-slate-100 px-4 py-2 text-xl" aria-label="Close trip planner">×</button>
+      </div>
+
+      <p class="muted mt-3 text-sm leading-6">Complete this demo form to create a trip summary. Nothing will be booked.</p>
+
+      <form id="bookingForm" class="mt-6 space-y-4">
+        <label class="block text-sm font-bold">Destination
+          <input id="tripDestination" required maxlength="70" placeholder="Enter destination" class="field mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal">
+        </label>
+        <label class="block text-sm font-bold">Travel Date
+          <input id="tripDate" type="date" required class="field mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-normal">
+        </label>
+        <label class="block text-sm font-bold">Travelers
+          <select id="tripPeople" class="field mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 font-normal">
+            <option>1 person</option><option selected>2 people</option><option>3 people</option><option>4 people</option><option>5+ people</option>
+          </select>
+        </label>
+        <label class="block text-sm font-bold">Travel Style
+          <select id="tripStyle" class="field mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 font-normal">
+            <option>Relaxed nature escape</option><option>Mountain adventure</option><option>Photography trip</option><option>Family getaway</option>
+          </select>
+        </label>
+        <button type="submit" class="w-full rounded-xl bg-emerald-800 px-5 py-4 font-extrabold text-white hover:bg-emerald-700">Create Trip Summary</button>
+        <p id="bookingMessage" class="muted text-sm leading-6" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="fixed bottom-5 left-1/2 z-[90] hidden -translate-x-1/2 rounded-full bg-slate-900 px-5 py-3 text-sm font-bold text-white shadow-xl" role="status" aria-live="polite"></div>
+
+  <button id="backToTop" class="fixed bottom-5 right-5 z-40 hidden h-12 w-12 rounded-full bg-lime-300 text-xl font-black text-emerald-950 shadow-xl hover:bg-lime-200" aria-label="Back to top">↑</button>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    const $ = selector => document.querySelector(selector);
+    const $$ = selector => [...document.querySelectorAll(selector)];
+
+    // TOAST
+    let toastTimer;
+    function toast(message) {
+      const box = $("#toast");
+      box.textContent = message;
+      box.classList.remove("hidden");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => box.classList.add("hidden"), 2500);
+    }
+
+    // MOBILE MENU
+    const menuBtn = $("#menuBtn");
+    const mobileMenu = $("#mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+      const opening = mobileMenu.classList.contains("hidden");
+      mobileMenu.classList.toggle("hidden");
+      menuBtn.textContent = opening ? "✕" : "☰";
+      menuBtn.setAttribute("aria-expanded", String(opening));
+    });
+
+    $$("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        menuBtn.textContent = "☰";
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // DARK MODE
+    function setTheme(dark) {
+      document.documentElement.classList.toggle("dark", dark);
+      localStorage.setItem("evergreen-theme", dark ? "dark" : "light");
+      $("#themeBtn").textContent = dark ? "☀" : "☾";
+      $("#mobileThemeBtn").textContent = dark ? "Light Theme ☀" : "Dark Theme ☾";
+    }
+
+    setTheme(localStorage.getItem("evergreen-theme") === "dark");
+
+    $("#themeBtn").addEventListener("click", () => {
+      setTheme(!document.documentElement.classList.contains("dark"));
+    });
+
+    $("#mobileThemeBtn").addEventListener("click", () => {
+      setTheme(!document.documentElement.classList.contains("dark"));
+    });
+
+    // SEARCH, FILTER, SORT AND VIEW
+    let activeFilter = "all";
+    let listView = false;
+    const cards = $$(".destination-card");
+    const grid = $("#destinationGrid");
+
+    function updateDestinations() {
+      const term = $("#searchInput").value.trim().toLowerCase();
+      const sort = $("#sortSelect").value;
+
+      const sorted = [...cards].sort((a, b) => {
+        if (sort === "az") return a.dataset.name.localeCompare(b.dataset.name);
+        if (sort === "za") return b.dataset.name.localeCompare(a.dataset.name);
+        return cards.indexOf(a) - cards.indexOf(b);
+      });
+
+      sorted.forEach(card => grid.appendChild(card));
+
+      let visible = 0;
+
+      cards.forEach(card => {
+        const categoryMatch = activeFilter === "all" || card.dataset.category === activeFilter;
+        const searchMatch = (card.dataset.name + " " + card.textContent).toLowerCase().includes(term);
+        const show = categoryMatch && searchMatch;
+
+        card.classList.toggle("hidden", !show);
+        if (show) visible++;
+
+        card.classList.toggle("md:flex", listView);
+        card.classList.toggle("md:items-center", listView);
+      });
+
+      $("#resultSummary").textContent = `Showing ${visible} of ${cards.length} destinations`;
+      $("#emptyState").classList.toggle("hidden", visible !== 0);
+
+      grid.classList.toggle("grid-cols-1", listView);
+      grid.classList.toggle("lg:grid-cols-3", !listView);
+      grid.classList.toggle("sm:grid-cols-2", !listView);
+      $("#viewBtn").textContent = listView ? "▦ Grid View" : "☷ List View";
+    }
+
+    $("#searchInput").addEventListener("input", updateDestinations);
+    $("#sortSelect").addEventListener("change", updateDestinations);
+
+    $$(".filterBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+        $$(".filterBtn").forEach(item => item.classList.toggle("filter-active", item === button));
+        updateDestinations();
+      });
+    });
+
+    $("#viewBtn").addEventListener("click", () => {
+      listView = !listView;
+      updateDestinations();
+    });
+
+    $("#resetBtn").addEventListener("click", () => {
+      $("#searchInput").value = "";
+      $("#sortSelect").value = "featured";
+      activeFilter = "all";
+      listView = false;
+      $$(".filterBtn").forEach(button => button.classList.toggle("filter-active", button.dataset.filter === "all"));
+      updateDestinations();
+    });
+
+    // FAVORITES
+    const favorites = new Set(JSON.parse(localStorage.getItem("evergreen-favorites") || "[]"));
+
+    function paintFavorite(button, active) {
+      button.textContent = active ? "♥" : "♡";
+      button.classList.toggle("favorite-active", active);
+      button.setAttribute("aria-pressed", String(active));
+    }
+
+    $$(".favorite").forEach(button => {
+      const card = button.closest(".destination-card");
+      const name = card.dataset.name;
+
+      paintFavorite(button, favorites.has(name));
+
+      button.addEventListener("click", () => {
+        if (favorites.has(name)) {
+          favorites.delete(name);
+          toast(name + " removed from favorites");
+        } else {
+          favorites.add(name);
+          toast(name + " added to favorites");
+        }
+
+        localStorage.setItem("evergreen-favorites", JSON.stringify([...favorites]));
+        paintFavorite(button, favorites.has(name));
+        $("#favoriteMessage").textContent = "Saved favorites: " + favorites.size;
+      });
+    });
+
+    $("#favoriteMessage").textContent = "Saved favorites: " + favorites.size;
+
+    // SHARE PAGE
+    $("#shareBtn").addEventListener("click", async () => {
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: document.title, text: "Explore Evergreen", url: location.href });
+        } else if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(location.href);
+          $("#shareMessage").textContent = "Page link copied!";
+        } else {
+          $("#shareMessage").textContent = "Copy the URL from your browser address bar to share.";
+        }
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          $("#shareMessage").textContent = "Copy the page URL from your browser address bar.";
+        }
+      }
+    });
+
+    // TRIP PLANNER
+    const modal = $("#bookingModal");
+
+    function openModal(destination = "") {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      $("#tripDestination").value = destination;
+      $("#bookingMessage").textContent = "";
+      document.body.classList.add("overflow-hidden");
+      $("#closeModal").focus();
+    }
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    $$("[data-book]").forEach(button => button.addEventListener("click", () => openModal()));
+
+    $$("[data-card-plan]").forEach(button => {
+      button.addEventListener("click", () => openModal(button.dataset.cardPlan));
+    });
+
+    $("#closeModal").addEventListener("click", closeModal);
+
+    modal.addEventListener("click", event => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && !modal.classList.contains("hidden")) closeModal();
+    });
+
+    // MINIMUM DATE
+    const dateInput = $("#tripDate");
+    const today = new Date();
+
+    dateInput.min = [
+      today.getFullYear(),
+      String(today.getMonth() + 1).padStart(2, "0"),
+      String(today.getDate()).padStart(2, "0")
+    ].join("-");
+
+    // TRIP SUMMARY
+    $("#bookingForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const destination = $("#tripDestination").value.trim();
+      const date = $("#tripDate").value;
+      const people = $("#tripPeople").value;
+      const style = $("#tripStyle").value;
+
+      $("#bookingMessage").textContent =
+        `Trip summary: ${destination} | ${date} | ${people} | ${style}. No real booking was made.`;
+
+      toast("Trip summary created!");
+    });
+
+    // NEWSLETTER DEMO
+    $("#newsletterForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const email = $("#emailInput").value.trim();
+
+      $("#formMessage").textContent =
+        `Thank you! ${email} was entered successfully. No email was sent.`;
+
+      event.target.reset();
+    });
+
+    // FAQ ACCORDION
+    $$(".faqBtn").forEach(button => {
+      button.addEventListener("click", () => {
+        const answer = button.nextElementSibling;
+        const opening = answer.classList.contains("hidden");
+
+        answer.classList.toggle("hidden");
+        button.setAttribute("aria-expanded", String(opening));
+        button.querySelector(".faqIcon").textContent = opening ? "−" : "+";
+      });
+    });
+
+    // SCROLL PROGRESS AND BACK TO TOP
+    const backToTop = $("#backToTop");
+
+    function onScroll() {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+
+      $("#progress").style.width = progress + "%";
+      backToTop.classList.toggle("hidden", window.scrollY < 400);
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    $("#footerTop").addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // IMAGE FALLBACK
+    $$("img").forEach(img => {
+      img.addEventListener("error", () => {
+        if (!img.dataset.fallbackTried && img.getAttribute("src") !== "mountain.jpg") {
+          img.dataset.fallbackTried = "true";
+          img.src = "mountain.jpg";
+        }
+      });
+    });
+
+    // INITIAL DISPLAY
+    updateDestinations();
+  </script>
+
+</body>
+</html>
